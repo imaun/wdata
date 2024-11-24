@@ -30,10 +30,14 @@ public class WebsiteLocalSource : IWebsiteDataSource
     
     public async Task<string> FetchDataAsync(string path, CancellationToken cancel = default)
     {
+        if (string.IsNullOrWhiteSpace(path))
+            throw new ArgumentNullException(nameof(path));
+        
         if (File.Exists(path))
-        {
             return await File.ReadAllTextAsync(path, Encoding.UTF8, cancel);
-        }
+
+        if (string.IsNullOrWhiteSpace(_basePath))
+            throw new ArgumentNullException("Base path is empty");
         
         var fullPath = Path.Combine(_basePath, path);
         if (!File.Exists(fullPath))
