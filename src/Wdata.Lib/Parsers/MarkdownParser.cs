@@ -3,7 +3,7 @@ using Markdig;
 
 namespace Wdata.Parsers;
 
-public class MarkdownParser
+public partial class MarkdownParser
 {
     private readonly YamlParser _yamlParser;
     
@@ -15,7 +15,7 @@ public class MarkdownParser
     public (string, Dictionary<string, object>) Parse(string markdown)
     {
         var document = Markdig.Parsers.MarkdownParser.Parse(markdown);
-        var regex = new Regex(@"^---\s*\n(.*?)\n---\s*\n(.*)$", RegexOptions.Singleline);
+        var regex = front_matter_regex();
         var match = regex.Match(markdown);
         if (!match.Success)
         {
@@ -29,4 +29,7 @@ public class MarkdownParser
         var metadata = _yamlParser.Parse(yaml);
         return (body, metadata);
     }
+
+    [GeneratedRegex(@"^---\s*\n(.*?)\n---\s*\n(.*)$", RegexOptions.Singleline)]
+    private static partial Regex front_matter_regex();
 }
