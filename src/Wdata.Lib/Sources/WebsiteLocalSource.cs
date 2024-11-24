@@ -1,6 +1,6 @@
 using Wdata.Contracts;
 
-namespace Wdata.Lib.Sources;
+namespace Wdata.Sources;
 
 /// <summary>
 /// Fetch text data from file system.
