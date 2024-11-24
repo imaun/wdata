@@ -1,4 +1,7 @@
+using System.Text;
+using Microsoft.Extensions.Options;
 using Wdata.Contracts;
+using Wdata.Lib.Configuration;
 
 namespace Wdata.Sources;
 
@@ -13,13 +16,29 @@ public class WebsiteLocalSource : IWebsiteDataSource
     {
         _basePath = basePath;
     }
+
+    public WebsiteLocalSource(IOptions<WdataConfig> config)
+    {
+        ArgumentNullException.ThrowIfNull(config);
+
+        var local_config = config.Value.GetLocalSource();
+        if (local_config is not null)
+        {
+            _basePath = local_config.BasePath;
+        }
+    }
     
     public async Task<string> FetchDataAsync(string path, CancellationToken cancel = default)
     {
+        if (File.Exists(path))
+        {
+            return await File.ReadAllTextAsync(path, Encoding.UTF8, cancel);
+        }
+        
         var fullPath = Path.Combine(_basePath, path);
         if (!File.Exists(fullPath))
             throw new FileNotFoundException($"File not found: {fullPath}");
         
-        return await File.ReadAllTextAsync(fullPath, cancel);
+        return await File.ReadAllTextAsync(fullPath, Encoding.UTF8, cancel);
     }
 }
