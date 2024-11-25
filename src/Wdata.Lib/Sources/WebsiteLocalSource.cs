@@ -43,6 +43,6 @@ public class WebsiteLocalSource : IWebsiteDataSource
         if (!File.Exists(fullPath))
             throw new FileNotFoundException($"File not found: {fullPath}");
         
-        return await File.ReadAllTextAsync(fullPath, Encoding.UTF8, cancel);
+        return await File.ReadAllTextAsync(fullPath, Encoding.UTF8, cancel).ConfigureAwait(false);
     }
 }
