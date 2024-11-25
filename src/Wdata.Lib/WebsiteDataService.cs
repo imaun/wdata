@@ -39,6 +39,24 @@ public class WebsiteDataService : IWebsiteDataService
         return await GetWebsiteDataAsync(_config.DefaultSource, path, cancel);
     }
 
+    public async Task<WebsitePost?> GetWebsitePostAsync(string source, string path, CancellationToken cancel = default)
+    {
+        if(string.IsNullOrWhiteSpace(source))
+            throw new ArgumentNullException(nameof(source));
+        
+        var dataSource = getDataSource(source);
+        
+        var content = await dataSource.FetchDataAsync(path, cancel);
+
+        var parser = new MarkdownParser();
+        var (body, metadata) = parser.Parse(content);
+
+        return new WebsitePost
+        {
+            
+        };
+    }
+
     private IWebsiteDataSource getDataSource(string source)
     {
         if (string.IsNullOrWhiteSpace(source))

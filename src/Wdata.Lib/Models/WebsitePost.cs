@@ -2,9 +2,11 @@ namespace Wdata.Models;
 
 public class WebsitePost
 {
-    public string Slug { get; set; } = null!;
+    public string? Slug { get; set; } = null!;
+    
+    public string? Body { get; set; }
 
-    public string Title { get; set; } = null!;
+    public string? Title { get; set; } = null!;
     
     public string? Description { get; set; }
 
@@ -12,7 +14,7 @@ public class WebsitePost
     
     public string? Category { get; set; }
     
-    public string[]? Tags { get; set; }
+    public string?[]? Tags { get; set; }
     
     public string? CoverImage { get; set; }
     
