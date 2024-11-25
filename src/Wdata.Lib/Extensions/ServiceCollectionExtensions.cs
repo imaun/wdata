@@ -24,13 +24,11 @@ public static class ServiceCollectionExtensions
     {
         services.AddTransient<WebsiteLocalSource>(provider =>
         {
-            var config = provider.GetRequiredService<IOptions<WdataConfig>>().Value;
-            if(config is null)
-                throw new InvalidOperationException("Wdata configuration is missing");
-
-            var localSource = config.GetLocalSource();
-            if(localSource is null) 
-                throw new InvalidOperationException("Local source configuration is missing");
+            var config = provider.GetRequiredService<IOptions<WdataConfig>>().Value
+                ?? throw new InvalidOperationException("Wdata configuration is missing");
+            
+            var localSource = config.GetLocalSource() 
+                ?? throw new InvalidOperationException("Local source configuration is missing");
 
             return new WebsiteLocalSource(config.GetLocalSource()!.BasePath);
         });
@@ -44,13 +42,10 @@ public static class ServiceCollectionExtensions
         services.AddTransient<WebsiteRemoteSource>(provider =>
         {
             var options = provider.GetRequiredService<IOptions<WdataConfig>>();
-            var config = options.Value;
-            if(config is null)
-                throw new InvalidOperationException("Wdata configuration is missing");
+            var config = options.Value ?? throw new InvalidOperationException("Wdata configuration is missing");
             
-            var remoteSource = config.GetRemoteSource();
-            if(remoteSource is null)
-                throw new InvalidOperationException("Remote source configuration is missing");
+            var remoteSource = config.GetRemoteSource()
+                ?? throw new InvalidOperationException("Remote source configuration is missing");
             
             var httpClientFactory = provider.GetRequiredService<IHttpClientFactory>();
             var httpClient = httpClientFactory.CreateClient();
