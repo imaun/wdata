@@ -1,7 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Wdata.Contracts;
-using Wdata.Lib.Configuration;
+using Wdata.Configuration;
 using Wdata.Models;
 using Wdata.Sources;
 using Wdata.Parsers;

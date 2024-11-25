@@ -1,7 +1,7 @@
 using System.Text;
 using Microsoft.Extensions.Options;
 using Wdata.Contracts;
-using Wdata.Lib.Configuration;
+using Wdata.Configuration;
 
 namespace Wdata.Sources;
 

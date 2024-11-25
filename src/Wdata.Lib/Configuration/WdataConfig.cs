@@ -1,4 +1,4 @@
-namespace Wdata.Lib.Configuration;
+namespace Wdata.Configuration;
 
 /// <summary>
 /// Root config schema for Wdata configurations
