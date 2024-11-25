@@ -2,6 +2,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Wdata.Contracts;
 using Wdata.Configuration;
+using Wdata.Extensions;
 using Wdata.Models;
 using Wdata.Sources;
 using Wdata.Parsers;
@@ -49,12 +50,14 @@ public class WebsiteDataService : IWebsiteDataService
         var content = await dataSource.FetchDataAsync(path, cancel);
 
         var parser = new MarkdownParser();
-        var (body, metadata) = parser.Parse(content);
+        var result = parser.Parse(content);
 
-        return new WebsitePost
-        {
-            
-        };
+        return result.ToWebsitePost();
+    }
+
+    public async Task<WebsitePost?> GetWebsitePostAsync(string path, CancellationToken cancel = default)
+    {
+        return await GetWebsitePostAsync(_config.DefaultSource, path, cancel);
     }
 
     private IWebsiteDataSource getDataSource(string source)

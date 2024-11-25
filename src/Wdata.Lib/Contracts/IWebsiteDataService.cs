@@ -8,4 +8,8 @@ public interface IWebsiteDataService
     Task<WebsiteData?> GetWebsiteDataAsync(string source, string path, CancellationToken cancel = default);
     
     Task<WebsiteData?> GetWebsiteDataAsync(string path, CancellationToken cancel = default);
+
+    Task<WebsitePost?> GetWebsitePostAsync(string source, string path, CancellationToken cancel = default);
+    
+    Task<WebsitePost?> GetWebsitePostAsync(string path, CancellationToken cancel = default);
 }

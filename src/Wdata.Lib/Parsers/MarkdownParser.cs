@@ -12,13 +12,13 @@ public partial class MarkdownParser
         _yamlParser = new YamlParser();
     }
 
-    public (string, Dictionary<string, object>) Parse(string markdown)
+    public (string body, Dictionary<string, object> metadata) Parse(string markdown)
     {
-        var document = Markdig.Parsers.MarkdownParser.Parse(markdown);
         var regex = front_matter_regex();
         var match = regex.Match(markdown);
         if (!match.Success)
         {
+            var document = Markdig.Parsers.MarkdownParser.Parse(markdown);
             // TODO: log markdown does not contains valid yaml front matter.
             return (document.ToHtml(), new Dictionary<string, object>());
         }
@@ -27,7 +27,8 @@ public partial class MarkdownParser
         var body = match.Groups[2].Value;
         
         var metadata = _yamlParser.Parse(yaml);
-        return (body, metadata);
+        var bodyContent = Markdig.Parsers.MarkdownParser.Parse(body);
+        return (bodyContent.ToHtml(), metadata);
     }
 
     [GeneratedRegex(@"^---\s*\n(.*?)\n---\s*\n(.*)$", RegexOptions.Singleline)]

@@ -42,4 +42,15 @@ public class WebsiteDataServiceTests
         Assert.Equal("https://imun.io", result.RootUrl);
         Assert.Equal("imun.io", result.Domain);
     }
+
+    [Fact]
+    public async Task Get_website_post_from_local_source()
+    {
+        var testDataPath = Path.Combine(Directory.GetCurrentDirectory(), "TestData", "website-post-sample.md");
+        
+        var result = await _websiteDataService.GetWebsitePostAsync("local", testDataPath);
+        Assert.NotNull(result);
+        Assert.Equal("test-post", result.Slug);
+        Assert.Equal("Test", result.Title);
+    }
 }

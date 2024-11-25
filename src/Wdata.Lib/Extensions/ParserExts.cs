@@ -5,7 +5,7 @@ namespace Wdata.Extensions;
 internal static class ParserExts
 {
 
-    public static WebsitePost Map(this (string body, Dictionary<string, object> metadata) input)
+    public static WebsitePost ToWebsitePost(this (string body, Dictionary<string, object> metadata) input)
     {
         return new WebsitePost
         {
