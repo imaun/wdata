@@ -2,6 +2,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Wdata.Configuration;
+using Wdata.Contracts;
 using Wdata.Sources;
 
 namespace Wdata.Extensions;
@@ -14,7 +15,8 @@ public static class ServiceCollectionExtensions
         IConfiguration configuration,
         string configSection)
     {
-        services.Configure<WdataConfig>(_=> configuration.GetSection(configSection)); 
+        services.Configure<WdataConfig>(configuration.GetSection(configSection));
+        services.AddTransient<IWebsiteDataService, WebsiteDataService>();
         
         return services;
     }

@@ -4,6 +4,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{782BDFB9-B69
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wdata.Lib", "src\Wdata.Lib\Wdata.Lib.csproj", "{CFF89BC4-1FE6-45DE-AE34-EB8D8B8D4038}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BEC649A4-0570-43FF-955A-899868732F54}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wdata.Tests", "test\Wdata.Tests\Wdata.Tests.csproj", "{FFBAA73F-FBA0-486C-B1C8-87FABCBD12E6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -11,11 +15,16 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{CFF89BC4-1FE6-45DE-AE34-EB8D8B8D4038} = {782BDFB9-B69E-43E0-ADEE-F6BCE1236190}
+		{FFBAA73F-FBA0-486C-B1C8-87FABCBD12E6} = {BEC649A4-0570-43FF-955A-899868732F54}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{CFF89BC4-1FE6-45DE-AE34-EB8D8B8D4038}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CFF89BC4-1FE6-45DE-AE34-EB8D8B8D4038}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFF89BC4-1FE6-45DE-AE34-EB8D8B8D4038}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFF89BC4-1FE6-45DE-AE34-EB8D8B8D4038}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFBAA73F-FBA0-486C-B1C8-87FABCBD12E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFBAA73F-FBA0-486C-B1C8-87FABCBD12E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFBAA73F-FBA0-486C-B1C8-87FABCBD12E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFBAA73F-FBA0-486C-B1C8-87FABCBD12E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
