@@ -39,5 +39,7 @@ public class WebsiteDataServiceTests
 
         Assert.NotNull(result);
         Assert.Equal("imun", result.Name);
+        Assert.Equal("https://imun.io", result.RootUrl);
+        Assert.Equal("imun.io", result.Domain);
     }
 }
