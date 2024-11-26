@@ -59,6 +59,32 @@ public class WebsiteDataService : IWebsiteDataService
     {
         return await GetWebsitePostAsync(_config.DefaultSource, path, cancel);
     }
+    
+    public async Task<string> GetWebsiteString(
+        string source, string path, string mode = "html", CancellationToken cancel = default)
+    {
+        if(string.IsNullOrWhiteSpace(source))
+            throw new ArgumentNullException(nameof(source));
+        
+        var dataSource = getDataSource(source);
+        
+        var content = await dataSource.FetchDataAsync(path, cancel);
+
+        if (mode == "md" || mode == "markdown")
+        {
+            var parser = new MarkdownParser();
+            var body = parser.Parse(content).body;
+            return body;
+        }
+
+        return content;
+    }
+
+    public async Task<string> GetWebsiteString(
+        string path, string model = "html", CancellationToken cancel = default)
+    {
+        return await GetWebsiteString(_config.DefaultSource, path, model, cancel);
+    }
 
     private IWebsiteDataSource getDataSource(string source)
     {
