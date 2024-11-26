@@ -46,8 +46,6 @@ public class WebsiteDataServiceTests
     [Fact]
     public async Task Get_website_data_from_remote_source()
     {
-        // var remoteDataPath = "https://raw.githubusercontent.com/imaun/website/refs/heads/master/test/website-data.json";
-        
         var result = await _websiteDataService.GetWebsiteDataAsync("remote", "test/website-data.json");
         
         Assert.NotNull(result);
@@ -62,6 +60,15 @@ public class WebsiteDataServiceTests
         var testDataPath = Path.Combine(Directory.GetCurrentDirectory(), "TestData", "website-post-sample.md");
         
         var result = await _websiteDataService.GetWebsitePostAsync("local", testDataPath);
+        Assert.NotNull(result);
+        Assert.Equal("test-post", result.Slug);
+        Assert.Equal("Test", result.Title);
+    }
+
+    [Fact]
+    public async Task Get_website_post_from_remote_source()
+    {
+        var result = await _websiteDataService.GetWebsitePostAsync("remote", "test/website-post-sample.md");
         Assert.NotNull(result);
         Assert.Equal("test-post", result.Slug);
         Assert.Equal("Test", result.Title);
