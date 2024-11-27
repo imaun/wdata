@@ -60,7 +60,7 @@ public class WebsiteDataService : IWebsiteDataService
         return await GetWebsitePostAsync(_config.DefaultSource, path, cancel);
     }
     
-    public async Task<string> GetWebsiteString(
+    public async Task<string> GetWebsiteContent(
         string source, string path, string mode = "html", CancellationToken cancel = default)
     {
         if(string.IsNullOrWhiteSpace(source))
@@ -80,10 +80,10 @@ public class WebsiteDataService : IWebsiteDataService
         return content;
     }
 
-    public async Task<string> GetWebsiteString(
+    public async Task<string> GetWebsiteContent(
         string path, string model = "html", CancellationToken cancel = default)
     {
-        return await GetWebsiteString(_config.DefaultSource, path, model, cancel);
+        return await GetWebsiteContent(_config.DefaultSource, path, model, cancel);
     }
 
     private IWebsiteDataSource getDataSource(string source)
