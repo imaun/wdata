@@ -12,6 +12,10 @@ public class WebsitePost
 
     public string? Summary { get; set; }
     
+    public string? PostType { get; set; }
+    
+    public string? Author { get; set; }
+    
     public string? Category { get; set; }
     
     public string?[]? Tags { get; set; }

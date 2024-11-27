@@ -81,9 +81,9 @@ public class WebsiteDataService : IWebsiteDataService
     }
 
     public async Task<string> GetWebsiteContent(
-        string path, string model = "html", CancellationToken cancel = default)
+        string path, string mode = "html", CancellationToken cancel = default)
     {
-        return await GetWebsiteContent(_config.DefaultSource, path, model, cancel);
+        return await GetWebsiteContent(_config.DefaultSource, path, mode, cancel);
     }
 
     private IWebsiteDataSource getDataSource(string source)
