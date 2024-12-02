@@ -70,7 +70,7 @@ public class WebsiteDataService : IWebsiteDataService
         
         var content = await dataSource.FetchDataAsync(path, cancel);
 
-        if (mode == "md" || mode == "markdown")
+        if (mode is "md" or "markdown")
         {
             var parser = new MarkdownParser();
             var body = parser.Parse(content).body;
