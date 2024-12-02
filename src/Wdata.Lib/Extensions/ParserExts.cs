@@ -28,7 +28,8 @@ internal static class ParserExts
                 : DateTime.MinValue,
             UpdatedAt = input.metadata.TryGetValue("updated_at", out var updatedAt)
                 ? DateTime.Parse(updatedAt.ToString() ?? string.Empty)
-                : DateTime.MinValue
+                : DateTime.MinValue,
+            Ref = input.metadata.TryGetValue("ref", out var @ref) ? @ref.ToString() : null,
         };
 
         return post;
