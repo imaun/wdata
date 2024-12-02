@@ -31,6 +31,12 @@ public partial class MarkdownParser
         return (bodyContent.ToHtml(), metadata);
     }
 
+
+    public string ConvertToHtml(string markdown)
+    {
+        return Markdig.Parsers.MarkdownParser.Parse(markdown).ToHtml();
+    }
+
     [GeneratedRegex(@"^---\s*\n(.*?)\n---\s*\n(.*)$", RegexOptions.Singleline)]
     private static partial Regex front_matter_regex();
 }

@@ -2,6 +2,8 @@ namespace Wdata.Models;
 
 public class WebsitePost
 {
+    private const string _html_break = "<br>";
+    
     public string? Slug { get; set; } = null!;
     
     public string? Body { get; set; }
@@ -27,4 +29,16 @@ public class WebsitePost
     public DateTime? UpdatedAt { get; set; }
     
     public string? Ref { get; set; }
+    
+    public string? RefMode { get; set; }
+    
+    public void AddToBody(string content, bool useBreak = true)
+    {
+        if (useBreak)
+        {
+            Body = $"{Body}{_html_break}{content}";
+        }
+        
+        Body += content;
+    }
 }

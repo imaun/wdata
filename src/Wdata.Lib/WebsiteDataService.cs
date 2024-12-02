@@ -52,7 +52,33 @@ public class WebsiteDataService : IWebsiteDataService
         var parser = new MarkdownParser();
         var result = parser.Parse(content);
 
-        return result.ToWebsitePost();
+        var post = result.ToWebsitePost();
+
+        if (!string.IsNullOrWhiteSpace(post.Ref))
+        {
+            try
+            {
+                var refContent = await dataSource.FetchDataAsync(post.Ref, cancel);
+                if (!string.IsNullOrWhiteSpace(refContent))
+                {
+                    if(post.RefMode is "md" or "markdown")
+                    {
+                        var ref_html = parser.ConvertToHtml(refContent);
+                        post.AddToBody(ref_html);
+                    }
+                    else
+                    {
+                        post.AddToBody(refContent);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //TODO: log exception
+            }
+        }
+
+        return post;
     }
 
     public async Task<WebsitePost?> GetWebsitePostAsync(string path, CancellationToken cancel = default)
