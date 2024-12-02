@@ -25,4 +25,6 @@ public class WebsitePost
     public DateTime? CreatedAt { get; set; }
     
     public DateTime? UpdatedAt { get; set; }
+    
+    public string? Ref { get; set; }
 }
