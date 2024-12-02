@@ -1,6 +1,6 @@
 namespace Wdata.Models;
 
-public class WebsitePost
+public sealed class WebsitePost
 {
     private const string _html_break = "<br>";
     
