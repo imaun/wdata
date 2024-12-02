@@ -16,4 +16,8 @@ public interface IWebsiteDataService
     Task<string> GetWebsiteContent(string source, string path, string mode = "html", CancellationToken cancel = default);
     
     Task<string> GetWebsiteContent(string path, string mode = "html", CancellationToken cancel = default);
+
+    Task<WebsitePostIndex?> GetPostIndexAsync(string source, string path, CancellationToken cancel = default);
+    
+    Task<WebsitePostIndex?> GetPostIndexAsync(string path, CancellationToken cancel = default);
 }

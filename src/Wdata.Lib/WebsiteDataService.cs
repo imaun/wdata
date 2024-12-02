@@ -112,6 +112,26 @@ public class WebsiteDataService : IWebsiteDataService
         return await GetWebsiteContent(_config.DefaultSource, path, mode, cancel);
     }
 
+
+    public async Task<WebsitePostIndex?> GetPostIndexAsync(
+        string source, string path, CancellationToken cancel = default)
+    {
+        if(string.IsNullOrWhiteSpace(source))
+            throw new ArgumentNullException(nameof(source));
+        
+        var dataSource = getDataSource(source);
+        
+        var content = await dataSource.FetchDataAsync(path, cancel);
+        
+        var jsonParser = new JsonParser<WebsitePostIndex>();
+        return jsonParser.Parse(content);
+    }
+
+    public async Task<WebsitePostIndex?> GetPostIndexAsync(string path, CancellationToken cancel = default)
+    {
+        return await GetPostIndexAsync(_config.DefaultSource, path, cancel);
+    }
+
     private IWebsiteDataSource getDataSource(string source)
     {
         if (string.IsNullOrWhiteSpace(source))
