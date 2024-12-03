@@ -73,4 +73,15 @@ public class WebsiteDataServiceTests
         Assert.Equal("test-post", result.Slug);
         Assert.Equal("Test", result.Title);
     }
+
+    [Fact]
+    public async Task Get_post_index_from_local_source()
+    {
+        var testDataPath = Path.Combine(Directory.GetCurrentDirectory(), "TestData", "sample-post-index.json");
+        
+        var result = await _websiteDataService.GetPostIndexAsync("local", testDataPath);
+        Assert.NotNull(result);
+        Assert.NotEmpty(result.Posts);
+        Assert.True(result.Posts.Any());
+    }
 }
