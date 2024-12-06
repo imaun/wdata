@@ -24,11 +24,11 @@ jobs:
       - name: Test
         run: dotnet test --no-build --verbosity normal 
         
-#      - name: Nuget Pack
-#        run: dotnet pack ./src/Wdata.Lib/Wdata.Lib.csproj -c Release
-#        
-#      - name: Nuget Publish
-#        env:
-#          NUGET_TOKEN: ${{ secrets.NUGET_KEY }}
-#        run: dotnet nuget push ./src/Wdata.Lib/bin/Release/*.nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
+      - name: Nuget Pack
+        run: dotnet pack ./src/Wdata.Lib/Wdata.Lib.csproj -c Release
+
+      - name: Nuget Publish
+        env:
+          NUGET_TOKEN: ${{ secrets.NUGET_KEY }}
+        run: dotnet nuget push ./src/Wdata.Lib/bin/Release/*.nupkg -k $NUGET_TOKEN -s https://api.nuget.org/v3/index.json --skip-duplicate
         

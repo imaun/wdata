@@ -4,6 +4,17 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackageId>Wdata</PackageId>
+        <Version>0.1</Version>
+        <Authors>Iman Nemati</Authors>
+        <Company>imun</Company>
+        <Description>
+            Library to load website data from files, and remote http GET calls, supports markdown and html
+        </Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <PackageProjectUrl>https://github.com/imaun/wdata</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/imaun/wdata</RepositoryUrl>
+        <PackageTags>website;markdown;html</PackageTags>
     </PropertyGroup>
 
     <ItemGroup>
