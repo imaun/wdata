@@ -42,6 +42,8 @@ public class WebsiteRemoteSource : IWebsiteDataSource
             : $"{_baseUrl.TrimEnd('/')}/{path.TrimStart('/')}";
         
         using var response = await _httpClient.GetAsync(url, cancel);
+        response.EnsureSuccessStatusCode();
+        
         return await response.Content.ReadAsStringAsync(cancel);
     }
 }
