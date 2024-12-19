@@ -32,7 +32,7 @@ public static class ServiceCollectionExtensions
             var localSource = config.GetLocalSource() 
                 ?? throw new InvalidOperationException("Local source configuration is missing");
 
-            return new WebsiteLocalSource(config.GetLocalSource()!.BasePath);
+            return new WebsiteLocalSource(localSource!.BasePath);
         });
 
         return services;

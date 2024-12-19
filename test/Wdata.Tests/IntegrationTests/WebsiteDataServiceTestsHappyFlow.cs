@@ -7,7 +7,7 @@ using Wdata.Extensions;
 
 namespace Wdata.Tests.IntegrationTests;
 
-public class WebsiteDataServiceTests
+public partial class WebsiteDataServiceTests
 {
     private readonly IServiceProvider _serviceProvider;
     private readonly IWebsiteDataService _websiteDataService;
