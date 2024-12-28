@@ -35,9 +35,10 @@ public class WebsiteLocalSource : IWebsiteDataSource
         
         if (File.Exists(path))
             return await File.ReadAllTextAsync(path, Encoding.UTF8, cancel);
-
-        if (string.IsNullOrWhiteSpace(_basePath))
-            throw new ArgumentNullException("Base path is empty");
+        
+        // TODO: do we need to check basePath !?
+        // if (string.IsNullOrWhiteSpace(_basePath))
+        //     throw new ArgumentNullException("Base path is empty");
         
         var fullPath = Path.Combine(_basePath, path);
         if (!File.Exists(fullPath))
